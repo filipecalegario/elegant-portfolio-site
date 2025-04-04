@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 
@@ -46,12 +45,18 @@ const PublicationsSection = () => {
         }
         const bibText = await response.text();
         const parsedPublications = parseBibTeX(bibText);
-        setPublications(parsedPublications);
+        
+        // Sort publications by year in descending order (newest first)
+        const sortedPublications = parsedPublications.sort((a, b) => 
+          parseInt(b.year) - parseInt(a.year)
+        );
+        
+        setPublications(sortedPublications);
       } catch (err) {
         console.error('Error loading publications:', err);
         setError('Não foi possível carregar as publicações. Usando dados de exemplo.');
         // Use sample data if fetch fails
-        setPublications(samplePublications);
+        setPublications(samplePublications.sort((a, b) => parseInt(b.year) - parseInt(a.year)));
       } finally {
         setIsLoading(false);
       }
