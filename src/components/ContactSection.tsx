@@ -1,8 +1,9 @@
-
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from "@/lib/utils";
 
 const ContactSection = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
@@ -24,7 +25,7 @@ const ContactSection = () => {
 
   const socialLinks = [
     {
-      name: 'Email',
+      name: t('contact.email'),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -61,7 +62,7 @@ const ContactSection = () => {
   return (
     <section id="contact" className="bg-white">
       <div className="container mx-auto">
-        <h2 className="section-heading">Contato</h2>
+        <h2 className="section-heading">{t('contact.title')}</h2>
         
         <div className={cn(
           "max-w-3xl mx-auto transition-all duration-700 transform",
@@ -69,7 +70,7 @@ const ContactSection = () => {
         )}>
           <div className="text-center mb-10">
             <p className="text-xl text-gray-600">
-              Interessado em colaborações acadêmicas ou gostaria de entrar em contato? Fique à vontade para me contatar através dos canais abaixo.
+              {t('contact.description')}
             </p>
           </div>
           

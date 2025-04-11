@@ -1,5 +1,5 @@
-
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from "@/lib/utils";
 
 interface AboutSectionProps {
@@ -11,7 +11,6 @@ interface AboutSectionProps {
 
 const AboutSection = ({
   name = "Filipe Calegario",
-  title = "Assistant Professor",
   description = `Filipe Calegario is an Assistant Professor at the Center for Informatics (CIn) at the Federal University of Pernambuco (UFPE). His research explores the fields of computational creativity, generative AI, and human–AI interaction.
 
 He previously worked as an industrial researcher at the SENAI Institute for Innovation in Information and Communication Technologies. He holds a Ph.D. in Computer Science from UFPE and, in 2015, completed a research internship in music technology at McGill University (Canada) as part of a sandwich Ph.D. program.
@@ -23,6 +22,7 @@ He has presented his work at numerous events exploring the intersection of art a
 In both 2014 and 2018, he was awarded grants from Rumos Itaú Cultural to develop the Tocada musical app and the Probatio prototyping toolkit.`,
   imageUrl = "https://www.cin.ufpe.br/~fcac/IMG_4344_copy1_quad2_reduzido.jpg"
 }: AboutSectionProps) => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
@@ -65,9 +65,9 @@ In both 2014 and 2018, he was awarded grants from Rumos Itaú Cultural to develo
             isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
           )}>
             <h2 className="text-4xl md:text-5xl font-bold mb-2">{name}</h2>
-            <h3 className="text-xl md:text-2xl text-primary mb-6">{title}</h3>
+            <h3 className="text-xl md:text-2xl text-primary mb-6">{t('about.role')}</h3>
             <p className="text-gray-600 leading-relaxed mb-8 text-lg">
-              {description}
+              {t('about.minibio')}
             </p>
             <div className="flex space-x-4">
               <a 
@@ -84,7 +84,7 @@ In both 2014 and 2018, he was awarded grants from Rumos Itaú Cultural to develo
                   }
                 }}
               >
-                Entre em contato
+                {t('about.contactButton')}
               </a>
               <a 
                 href="#publications" 
@@ -100,7 +100,7 @@ In both 2014 and 2018, he was awarded grants from Rumos Itaú Cultural to develo
                   }
                 }}
               >
-                Ver publicações
+                {t('about.publicationsButton')}
               </a>
             </div>
           </div>

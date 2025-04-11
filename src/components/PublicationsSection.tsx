@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
+import { useTranslation } from 'react-i18next';
 
 interface PublicationEntry {
   id: string;
@@ -13,6 +14,8 @@ interface PublicationEntry {
 }
 
 const PublicationsSection = () => {
+
+  const { t } = useTranslation();
   const [publications, setPublications] = useState<PublicationEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -56,9 +59,7 @@ const PublicationsSection = () => {
         setPublications(sortedPublications);
       } catch (err) {
         console.error('Error loading publications:', err);
-        setError('Não foi possível carregar as publicações. Usando dados de exemplo.');
-        // Use sample data if fetch fails
-        setPublications(samplePublications.sort((a, b) => parseInt(b.year) - parseInt(a.year)));
+        setError(t('publications.error'));
       } finally {
         setIsLoading(false);
       }
@@ -170,38 +171,10 @@ const PublicationsSection = () => {
     return reference;
   };
 
-  // Sample publications as fallback
-  const samplePublications: PublicationEntry[] = [
-    {
-      id: 'smith2022',
-      title: 'Advances in modern computing architectures',
-      authors: ['Smith, John', 'Doe, Jane'],
-      journal: 'Journal of Computer Science',
-      year: '2022',
-      doi: '10.1000/xyz123'
-    },
-    {
-      id: 'brown2021',
-      title: 'Machine learning applications in healthcare',
-      authors: ['Brown, Robert', 'Johnson, Emily', 'Williams, David'],
-      conference: 'International Conference on AI in Medicine',
-      year: '2021',
-      doi: '10.1001/jama.2021.123456'
-    },
-    {
-      id: 'garcia2023',
-      title: 'Deep learning approaches for natural language processing',
-      authors: ['Garcia, Maria'],
-      journal: 'Computational Linguistics Journal',
-      year: '2023',
-      doi: '10.1002/cl.20230101'
-    }
-  ];
-
   return (
     <section id="publications" className="bg-gray-50">
       <div className="container mx-auto">
-        <h2 className="section-heading">Publicações</h2>
+        <h2 className="section-heading">{t('publications.title')}</h2>
         
         <div className={cn(
           "transition-all duration-700 transform",

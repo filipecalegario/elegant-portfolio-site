@@ -1,8 +1,10 @@
-
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from "@/lib/utils";
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -45,11 +47,11 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { id: 'about', label: 'Sobre' },
-    { id: 'publications', label: 'Publicações' },
-    { id: 'teaching', label: 'Ensino' },
-    { id: 'projects', label: 'Projetos' },
-    { id: 'contact', label: 'Contato' }
+    { id: 'about', label: t('navbar.about') },
+    { id: 'publications', label: t('navbar.publications') },
+    { id: 'teaching', label: t('navbar.teaching') },
+    { id: 'projects', label: t('navbar.projects') },
+    { id: 'contact', label: t('navbar.contact') }
   ];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,40 +70,46 @@ const Navbar = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          Seu Nome
+          {t('navbar.name')}
         </a>
 
         {/* Mobile menu button */}
-        <button 
-          className="md:hidden p-2"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-            {isMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            )}
-          </svg>
-        </button>
+        <div className="flex items-center md:hidden">
+          <LanguageSwitcher />
+          <button 
+            className="p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+              {isMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+              )}
+            </svg>
+          </button>
+        </div>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex space-x-8">
-          {navItems.map(item => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={cn(
-                "relative text-sm font-medium transition-colors hover:text-primary/80",
-                activeSection === item.id 
-                  ? "text-primary after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-0.5 after:w-full after:bg-primary after:rounded-full" 
-                  : "text-foreground/80"
-              )}
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
+        <div className="hidden md:flex items-center space-x-4">
+          <nav className="flex space-x-8">
+            {navItems.map(item => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={cn(
+                  "relative text-sm font-medium transition-colors hover:text-primary/80",
+                  activeSection === item.id 
+                    ? "text-primary after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-0.5 after:w-full after:bg-primary after:rounded-full" 
+                    : "text-foreground/80"
+                )}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+          <LanguageSwitcher />
+        </div>
 
         {/* Mobile navigation */}
         <div className={cn(

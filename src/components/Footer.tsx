@@ -1,7 +1,8 @@
-
+import { useTranslation } from 'react-i18next';
 import { cn } from "@/lib/utils";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-gray-600">
-              © {currentYear} Seu Nome. Todos os direitos reservados.
+              © {currentYear} Seu Nome. {t('footer.rights')}
             </p>
           </div>
           
@@ -29,7 +30,7 @@ const Footer = () => {
                 }
               }}
             >
-              Sobre
+              {t('navbar.about')}
             </a>
             <a 
               href="#projects" 
@@ -45,7 +46,7 @@ const Footer = () => {
                 }
               }}
             >
-              Projetos
+              {t('navbar.projects')}
             </a>
             <a 
               href="#contact" 
@@ -61,7 +62,7 @@ const Footer = () => {
                 }
               }}
             >
-              Contato
+              {t('navbar.contact')}
             </a>
           </div>
         </div>
