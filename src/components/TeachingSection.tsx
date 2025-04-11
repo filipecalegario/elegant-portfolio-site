@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 
@@ -38,7 +37,9 @@ const TeachingSection = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch('/courses.json');
+        // Usar import.meta.env.BASE_URL para obter o caminho base configurado no vite
+        const basePath = (import.meta.env.BASE_URL as string) || '/';
+        const response = await fetch(`${basePath}courses.json`);
         if (!response.ok) {
           throw new Error('Failed to load courses');
         }

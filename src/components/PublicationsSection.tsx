@@ -39,7 +39,9 @@ const PublicationsSection = () => {
   useEffect(() => {
     const fetchBibFile = async () => {
       try {
-        const response = await fetch('/references.bib');
+        // Usar import.meta.env.BASE_URL para obter o caminho base configurado no vite
+        const basePath = (import.meta.env.BASE_URL as string) || '/';
+        const response = await fetch(`${basePath}references.bib`);
         if (!response.ok) {
           throw new Error('Failed to load publications');
         }

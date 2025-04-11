@@ -10,10 +10,18 @@ interface AboutSectionProps {
 }
 
 const AboutSection = ({
-  name = "Seu Nome",
-  title = "Professor & Pesquisador",
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae justo nec urna feugiat vestibulum. Nulla facilisi. Etiam ut lectus ac arcu vestibulum vestibulum. Phasellus euismod, mauris id commodo maximus, felis arcu lacinia erat, vitae commodo nunc orci id justo.",
-  imageUrl = "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80&w=400&h=500"
+  name = "Filipe Calegario",
+  title = "Assistant Professor",
+  description = `Filipe Calegario is an Assistant Professor at the Center for Informatics (CIn) at the Federal University of Pernambuco (UFPE). His research explores the fields of computational creativity, generative AI, and human–AI interaction.
+
+He previously worked as an industrial researcher at the SENAI Institute for Innovation in Information and Communication Technologies. He holds a Ph.D. in Computer Science from UFPE and, in 2015, completed a research internship in music technology at McGill University (Canada) as part of a sandwich Ph.D. program.
+
+Calegario is a co-founder of Batebit Artesania Digital, a creative lab dedicated to the design and development of experimental interfaces and interactive installations. He is also a member of MusTIC, the art and technology research group at CIn-UFPE, and currently leads GERAIA, the CIn-UFPE research group focused on generative AI applications.
+
+He has presented his work at numerous events exploring the intersection of art and technology, including Recife: The Playable City, FILE – International Electronic Language Festival, Festival de Arte Digital (FAD), Continuum, and Interactivos?.
+
+In both 2014 and 2018, he was awarded grants from Rumos Itaú Cultural to develop the Tocada musical app and the Probatio prototyping toolkit.`,
+  imageUrl = "https://www.cin.ufpe.br/~fcac/IMG_4344_copy1_quad2_reduzido.jpg"
 }: AboutSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
   
