@@ -42,7 +42,7 @@ const ProjectsSection = () => {
         // Determine the language to use for the projects file
         const lang = i18n.language?.startsWith('pt') ? 'pt' : 'en';
         const basePath = (import.meta.env.BASE_URL as string) || '/';
-        const response = await fetch(`${basePath}data/projects_${lang}.json`);
+        const response = await fetch(`https://raw.githubusercontent.com/filipecalegario/elegant-portfolio-site/refs/heads/main/public/data/projects_${lang}.json`);
         
         if (!response.ok) {
           throw new Error(`Failed to fetch projects: ${response.status}`);
